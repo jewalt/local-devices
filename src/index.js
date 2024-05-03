@@ -65,8 +65,8 @@ function getServers () {
       if (address.family === 'IPv4' && !address.internal) {
         var subnet = ip.subnet(address.address, address.netmask)
         var current = ip.toLong(subnet.firstAddress)
-        var last = ip.toLong(subnet.lastAddress) - 1
-        while (current++ < last) result.push(ip.fromLong(current))
+        var last = ip.toLong(subnet.lastAddress)
+        while (current <= last) result.push(ip.fromLong(current++))
       }
     }
   }
